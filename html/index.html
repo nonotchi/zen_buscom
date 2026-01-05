@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6GB03WEP10"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-6GB03WEP10');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バスコム</title>
+    <link rel="stylesheet" href="output.css?ver=202510180226">
+    <link rel="stylesheet" href="font.css?v=2">
+    <link rel="stylesheet" href="https://morisawafonts.net/c/01K3RY5HCP4FBCS3M0JXT0JFQ2/mf.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="w-full bg-slate-100">
+        <div class="flex text-3xl max-w-5xl mx-auto p-2 items-center">
+            <img src="logo.png" alt="ロゴ" class="h-14">
+            <div>バスコム</div>
+        </div>
+    </div>
+    
+    <p class="text-gray-700"><a href="https://buscom.jp/map/yokohamaMunicipal/" class="text-blue-600 underline" target="_blank">マップ式 (横浜市営バス)</a>：バスの現在地をマップ式で確認できます。</p>
+
+    <div class="flex mx-auto mt-4 p-2 w-full md:w-1/2 text-sm font-medium text-center text-gray-500 border-b border-gray-200">
+        <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer" checked id="save-history">
+            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:bg-blue-500 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+            <span class="ms-3 text-sm font-medium text-gray-900">履歴の保存</span>
+        </label>
+        <button type="button" class="text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 ml-4" id="clear-history">履歴を削除</button>
+    </div>
+
+    <ul class="flex mx-auto mt-4 w-full overflow-x-auto md:w-1/2 text-sm font-medium text-center text-gray-500 border-b border-gray-200">
+        <li class="me-2 flex-none">
+            <a href="javascript:void(0);" id="favorite" class="select-operator transition duration-200 ease-in-out inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50">お気に入り</a>
+        </li>
+        <li class="me-2 flex-none">
+            <a href="javascript:void(0);" id="history" class="select-operator transition duration-200 ease-in-out inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50">履歴</a>
+        </li>
+        
+        <li class="me-2 flex-none">
+            <a href="javascript:void(0);" id="yokohamaMunicipal" class="select-operator transition duration-200 ease-in-out inline-block p-4 text-blue-600 bg-blue-50 rounded-t-lg active">横浜市営バス</a>
+        </li>
+        <li class="me-2 flex-none">
+            <a href="javascript:void(0);" id="rinkoBus" class="select-operator transition duration-200 ease-in-out inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50">臨港バス</a>
+        </li>
+        <li class="me-2 flex-none">
+            <a href="javascript:void(0);" id="toBus" class="select-operator transition duration-200 ease-in-out inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50">都営バス</a>
+        </li>
+    </ul>
+
+    <div class="container mx-auto w-full md:w-1/2 px-2 my-4 relative">
+        <label for="default-input" class="block w-full mb-2 text-sm font-medium text-gray-900">停留所名を入力</label>
+        <input type="text" id="search-input" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" placeholder="停留所名">
+
+        <div id="search-list" class="grid bg-white divide-y divide-gray-200 absolute z-20 max-w-full drop-shadow-lg"></div>
+    </div>
+
+    <div id="result" class="container mx-auto w-full py-4"></div>
+    
+    <div class="container mx-auto w-full py-4">
+        <button type="button" class="text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 ml-4" id="clear-favorite">お気に入りを全削除</button>
+    </div>
+    
+    <hr class="w-3/4 h-0.5 mx-auto my-4 bg-gray-100 border-0 rounded-md md:my-1">
+
+    <div class="container mx-auto w-full md:w-1/2 px-2 my-4 relative">
+        <h2 class="text-3xl font-bold my-2">説明・注意事項（必ずお読みください）</h2>
+        <p class="text-gray-700">個人が開発したプログラムですので、技術的に不完全な部分もあります。データは毎日収集していますが、不具合や障害、データ更新の遅延が発生する可能性もあります。実際にバスを利用する際は、バス事業者の公式サイトやバス停に掲出の時刻表などの一次情報を参照するようにしてください。</p>
+
+        <ul class="list-disc my-2 text-gray-700 pl-5">
+            <li class="my-2">混雑度データは、横浜市営バスのみの対応です。</li>
+            <li class="my-2">混雑度データは、過去のデータの平均です。天候やイベントなどの情報は加味していません。</li>
+            <li class="my-2">接近情報の表示にも対応していますが、15秒ごとの更新のため、タイムラグがあります。また、データの欠落により表示がない場合があります。</li>
+            <li class="my-2 font-bold">このサイトを使用して発生した損害等の不利益について、このサイトの開発者は一切責任を負わないものとします。自己責任でご利用ください。</li>
+            <li class="my-2 font-bold">本アプリケーションが利用する公共交通データは、公共交通オープンデータセンターにおいて提供されるものです。</li>
+            <li class="my-2 font-bold">公共交通事業者により提供されたデータを元にしていますが、必ずしも正確・完全なものとは限りません。本アプリケーションの表示内容について、公共交通事業者への直接の問合せは行わないでください。</li>
+            <li class="my-2 font-bold">本アプリケーションに関するお問い合わせは、以下のメールアドレスにお願いします。</li>
+            <li class="my-2">開発者メールアドレス：contact(あっと)nonotchi.tech (※(あっと)は"@"(半角アットマーク)に置換してください)</li>
+            <li class="my-2">作った人：ののっち（<a href="https://nonotchi.tech/" class="text-blue-600 underline" target="_blank">開発者HP</a>）
+                <ul class="list-disc my-2 text-gray-700">
+                    <li class="my-2">使い方など詳細は、<a href="https://nonotchi.tech/works/buscom/" class="text-blue-600 underline" target="_blank">こちらの記事</a>で紹介しています。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="w-3/4 h-0.5 mx-auto my-4 bg-gray-100 border-0 rounded-md md:my-1">
+
+        <!--<ul class="list-disc my-2 text-gray-700">
+            <li class="my-2"><strong class="font-bold">閲覧した停留所が「履歴」タブに保存されます。</strong>履歴を残さない場合、「履歴の保存」というトグルスイッチを押してオフにしてください（再度クリックで有効化します）。「履歴を削除」をクリックすると、すべての履歴を削除します。</li>
+            <li class="my-2">発車案内ページの右下に、「現在時刻」ボタンと「お気に入り」ボタンを設置しました。</li>
+            <li class="my-2"><strong class="font-bold">「現在時刻」ボタンクリックで、現在時刻付近の便に画面が移動します。</strong>今まではスクロールして探す必要がありましたが、押すだけで現在時刻付近の便が見つかります！</li>
+            <li class="my-2"><strong class="font-bold">「お気に入り」ボタンで登録したお気に入り停留所は、このページの「お気に入り」タブに追加されます。</strong>「お気に入り」ボタンがグレーの場合、押すと登録、色がついている場合、押すと登録解除します。すべてのお気に入りを削除するには、「お気に入りタブ」を開いたときに出る「お気に入りを全削除」を押します。</li>
+            <li class="my-2">機能が表示されない場合は、各ページを再読み込みしてみてください。</li>
+        </ul>-->
+
+        <h2 class="text-3xl font-bold my-2">アップデート情報</h2>
+        <ul class="list-disc my-2 text-gray-700  pl-5">
+            <li class="my-2">2025/10/23 臨港バス・都バスの接近情報でも、現在地の停留所名表示に対応しました！</li>
+            <li class="my-2">2025/10/17 履歴機能・お気に入り機能・現在時刻機能を実装しました！</li>
+            <li class="my-2">2025/10/14 横浜市営バスの接近情報において、バスの現在地を停留所名で表示するようにしました！</li>
+            <li class="my-2">2025/10/13 <a href="https://buscom.jp/map/yokohamaMunicipal/" class="text-blue-600 underline" target="_blank">マップ式 (横浜市営バス)</a>をリリースしました！バスの現在地をマップ式で確認できます。</li>
+        </ul>
+    </div>
+    
+    <script src="index.js?v=202510180244"></script>
+</body>
+</html>

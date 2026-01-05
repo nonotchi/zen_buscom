@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6GB03WEP10"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-6GB03WEP10');
+    </script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>横浜市営バス - バスコムマップ</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-language/v1.0.0/mapbox-gl-language.js'></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="https://morisawafonts.net/c/01K3RY5HCP4FBCS3M0JXT0JFQ2/mf.css">
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1">
+
+    <link rel="shortcut icon" href="https://buscom.jp/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="main">
+        <div id='map'>
+            <div class="search">
+                <input type="text" id="search-box" placeholder="停留所名を入力">
+                <input type="button" id="search" value="検索">
+                <div id="suggest"></div>
+            </div>
+
+            <div class="about">
+                <div class="tools">
+                    <a href="javascript:void(0);" id="go-to-current-location">現在地</a>
+                    <a href="javascript:void(0);" id="show-instructions">凡例・必ずお読みください</a>
+                </div>
+            </div>
+        </div>
+        <div id="detail">
+            <div id="bus-information-wrap">
+                <a href="javascript:void(0);" id="sp-close-detail">閉じる</a>
+                <div id="detail-route-name"></div>
+                <div id="detail-destination"></div>
+                <div id="detail-update"></div>
+                <div id="detail-route"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="instructions">
+        <div class="instructions-body">
+            <ul>
+                <li>使い方など詳細は、<a href="https://nonotchi.tech/works/buscom/" target="_blank">こちらの記事</a>で紹介しています。</li>
+            </ul>
+
+            <h2>必ずお読みください</h2>
+            <ul>
+                <li>本アプリケーションが利用する公共交通データは、公共交通オープンデータセンターにおいて提供されるものです。</li>
+                <li>公共交通事業者により提供されたデータを元にしていますが、必ずしも正確・完全なものとは限りません。本アプリケーションの表示内容について、公共交通事業者への直接の問合せは行わないでください。</li>
+                <li>本アプリケーションに関するお問い合わせは、以下のメールアドレスにお願いします。</li>
+                <li>contact(あっと)nonotchi.tech (あっと)は"@"(半角アットマーク)に置換してください</li>
+                <li>開発者：ののっち (<a href="https://nonotchi.tech/" target="_blank">開発者HP</a>)</li>
+            </ul>
+
+            <h2>凡例</h2>
+            <ul>
+                <li>灰色の小さな丸は、バス停のポールの位置を示しています。</li>
+                <li>灰色のラインは、バス路線を示しています。</li>
+                <li>大きな色付きの丸は、バス車両の位置を示しています。<ul>
+                    <li><span style="color: #005aff;">●</span>青色は、空いています。</li>
+                    <li><span style="color: #03af7a;">●</span>緑色は、混んでいます。</li>
+                    <li><span style="color: #f6aa00;">●</span>橙色は、非常に混んでいます。</li>
+                    <li><span style="color: #ff4b00;">●</span>赤色は、満員です。</li>
+                </ul></li>
+                <li>バス車両をクリック(タップ)すると、路線情報を表示します。</li>
+            </ul>
+
+            <h2>検索について</h2>
+            <ul>
+                <li>停留所名を検索すると、画面をその停留所の位置に移動させることができます。</li>
+                <li>停留所名は、ひらがなでの検索にも対応しています。</li>
+            </ul>
+
+            <h2>位置情報について</h2>
+            <ul>
+                <li>位置情報を許可すると、「現在地」をクリックして、画面を今いる位置に移動させることができます。</li>
+                <li>位置情報は収集していませんのでご安心ください。</li>
+            </ul>
+
+            <a href="javascript:void(0);" id="close-instructions">閉じる</a>
+        </div>
+    </div>
+
+    <script src="script.js?v=202510171458"></script>
+</body>
+</html>

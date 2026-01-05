@@ -1,0 +1,263 @@
+* {
+    font-family: "MFW-UDShinGoPr6N-Light", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    box-sizing: border-box;
+}
+
+.mapboxgl-popup-content {
+    padding-right: 2rem;
+}
+
+strong {
+    font-family: "MFW-UDShinGoPr6N-DeBold";
+}
+
+a {
+    color: #444444;
+}
+
+html, body, .main, #map {
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+    width: 100%;
+}
+
+.main {
+    display: flex;
+}
+
+#map {
+    font-size: 15px;
+}
+
+#detail {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 10px 20px;
+    overflow-y: auto;
+}
+
+@media screen and (min-width: 960px) {
+    #map {
+        width: 70%;
+    }
+
+    #detail {
+        width: 30%;
+    }
+
+    #sp-close-detail {
+        display: none;
+    }
+}
+@media screen and (max-width: 959px) {
+    .main {
+        flex-wrap: wrap;
+    }
+
+    #map {
+        height: 100%;
+    }
+
+    #detail {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        inset: 0;
+        display: none;
+        z-index: 3;
+    }
+
+    #sp-close-detail {
+        display: block;
+        text-align: right;
+        color: #4dcaff;
+        margin-bottom: 5px;
+    }
+}
+
+#bus-information-wrap {
+    display: none;
+}
+
+.congestion {
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.congestion img {
+    height: 2rem;
+    margin-right: 5px;
+}
+
+#detail-route-name, .route-name {
+    background-color: #0000ff;
+    color: #ffffff;
+    padding: 2px 5px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.route-name {
+    display: inline-block;
+    margin: 2px 5px 2px 0;
+}
+
+#detail-destination {
+    font-size: 1.5rem;
+    border-bottom: solid 1px #888888;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-stop {
+    background-color: #444444;
+    padding: 5px 10px;
+}
+
+.detail-stop-name {
+    font-size: 1.2rem;
+}
+
+.detail-section {
+    position: relative;
+    padding-left: 10px;
+}
+
+.detail-section::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    border-left: 3px solid #eeeeee;
+}
+
+.detail-vehicle {
+    display: flex;
+    padding: 10px 0;
+    margin-left: 20px;
+}
+
+.detail-vehicle img {
+    height: 2.5rem;
+    margin-right: 7px;
+}
+
+.detail-congestion {
+    line-height: 2.5rem;
+}
+
+.spacer {
+    min-height: 20px;
+}
+
+
+.search {
+    position: absolute;
+    max-width: 100%;
+    min-width: 20rem;
+    margin: 15px;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#search-box {
+    padding: 2px 5px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+#search {
+    border-radius: 5px;
+    width: 15%;
+}
+
+#suggest {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    top: calc(2rem + 5px);
+    display: none;
+    max-height: 70dvh;
+    overflow-y: auto;
+}
+
+#suggest a {
+    display: block;
+    padding: 4px 6px;
+    border-bottom: 1px solid #888888;
+    color: #333333;
+    text-decoration: none;
+}
+
+#suggest a:last-child {
+    border-bottom: none;
+}
+
+.about {
+    position: absolute;
+    margin: 15px;
+    bottom: 30px;
+    right: 0;
+    background-color: #333333;
+    color: #fff;
+    padding: 4px 6px;
+    z-index: 2;
+}
+
+.note {
+    color: #cccccc;
+    border-top: 1px solid #888888;
+}
+
+.note li {
+    margin-top: 10px;
+}
+
+.tools a {
+    color: #4dcaff;
+    margin: 0 5px 5px;
+}
+
+#instructions {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333333;
+    color: #eeeeee;
+    z-index: 4;
+    padding: 20px 10px;
+    overflow-y: auto;
+}
+
+.instructions-body a {
+    color: #4dcaff;
+}
+
+.instructions-body h2 {
+    padding: 7px;
+    border-left: 10px solid #4dcaff;
+    border-bottom: 1px solid #4dcaff;
+}
+
+#close-instructions {
+    display: block;
+    text-align: center;
+}
+
+@media screen and (min-width: 960px) {
+    .instructions-body {
+        margin: auto;
+        width: 60%;
+    }
+}
+@media screen and (max-width: 959px) {
+    .instructions-body {
+        width: 100%;
+    }
+}

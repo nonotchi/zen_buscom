@@ -1,0 +1,17 @@
+* {
+    font-family: "MFW-UDShinGoPr6N-Light" !important;
+}
+
+.font-bold {
+    font-family: "MFW-UDShinGoPr6N-DeBold" !important;
+}
+
+/* 系統番号用 */
+.py-0\.5 {
+    display: inline-block;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-right: 5px;
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+}
