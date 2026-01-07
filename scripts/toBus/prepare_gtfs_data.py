@@ -13,7 +13,7 @@ import sys
 import unicodedata
 import jaconv
 
-ACCESS_TOKEN = '6678nme9w07wljab3nl9cdoxoam0gxtzqhxa4mv49f8e4cpfx3vi41vl49n047b7'
+ACCESS_TOKEN = os.environ.get('ODPT_ACCESS_TOKEN', '')
 path = os.path.dirname(__file__)
 
 # GTFS static ファイルパス
